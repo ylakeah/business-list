@@ -109,6 +109,29 @@ onMounted(() => {
 
 <template>
   <div class="greetings">
+    <!-- <div>
+      <FilterCategory
+        :categoryList="categoryList"
+        @filter-category="
+          (list) => {
+            paramsBody.listCategory = list;
+            paramsBody.page = 1;
+            fetchData();
+          }
+        "
+      />
+
+      <SearchBar
+        @search-by-name="
+          (name) => {
+            paramsBody.businessName = name;
+            fetchData();
+          }
+        "
+      /> 
+
+    </div> -->
+
     <div>
       <SearchBar
         @search-by-name="
@@ -133,6 +156,7 @@ onMounted(() => {
         "
       />
     </div>
+
     <div class="flex-container">
       <BusinessCard
         :currentPage="paramsBody.page"
@@ -205,6 +229,10 @@ h3 {
 .greetings h1,
 .greetings h3 {
   text-align: center;
+}
+
+.greetings{
+  /* max-width: 1024px; */
 }
 
 @media (min-width: 1024px) {

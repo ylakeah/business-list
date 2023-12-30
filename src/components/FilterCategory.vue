@@ -10,14 +10,18 @@ defineProps({
 const emit = defineEmits(["filterCategory"]);
 const showFilter = ref(false);
 const selectedOptions = ref([]);
+
+function toggle(params) {
+  showFilter.value = !showFilter.value;
+}
 </script>
 
 <template>
-  <div class="filter-container" @click.prevent="showFilter = !showFilter">
+  <div class="filter-container centerized" @click.prevent="toggle()">
     Filter <span v-if="showFilter">&#9650;</span><span v-else>&#9660;</span>
   </div>
 
-  <div v-if="showFilter" class="filter-options">
+  <div class="filter-options centerized" v-if="showFilter">
     <label v-for="(option, index) in categoryList" :key="index">
       <input
         type="checkbox"
@@ -30,13 +34,15 @@ const selectedOptions = ref([]);
     <div class="btm-section">
       <button
         class="btm-btn"
-        @click.prevent="$emit('filterCategory', selectedOptions)"
+        @click.prevent="$emit('filterCategory', selectedOptions), toggle()"
       >
         Apply
       </button>
       <button
         class="btm-btn"
-        @click.prevent="$emit('filterCategory', []), (selectedOptions = [])"
+        @click.prevent="
+          $emit('filterCategory', []), (selectedOptions = []), toggle()
+        "
       >
         Clear
       </button>
@@ -45,13 +51,13 @@ const selectedOptions = ref([]);
 </template>
 
 <style scoped>
-body {
-  font-family: "Arial", sans-serif;
-  text-align: center;
-  margin: 20px;
+.centerized {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-
 .filter-container {
+  position: relative;
   cursor: pointer;
   padding: 10px;
   color: #fff;
@@ -71,7 +77,6 @@ body {
   background-color: black;
   color: #fff;
   border-radius: 5px;
-  /* display: flex; */
   justify-content: center;
   transition: 0.3s;
   border: silver 0.5px solid;
@@ -98,6 +103,7 @@ body {
   margin-top: 10px;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
+  /* animation: fadeIn 0.6s ease-in both; */
 }
 
 .filter-options label {

@@ -1,29 +1,52 @@
-# business-list
+# Business list Project
 
-This template should help get you started developing with Vue 3 in Vite.
+## Overview
 
-## Recommended IDE Setup
+This web application is developed according to the specified requirements, utilizing HTML, CSS, and the Vue.js framework, The data for the application is retrieved from an API link. The project incorporates creativity to deliver an engaging and visually appealing interface.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Tech Stack
 
-## Customize configuration
+- **Languages:** HTML, CSS, JavaScript
+- **Framework:** Vue.js 3
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Why Vue.js?
 
-## Project Setup
+Vue.js, known for its simplicity and flexibility, provides an efficient way to create interactive user interfaces. This combination allows for a seamless development experience and ensures the application's responsiveness.
 
-```sh
-npm install
-```
+## Setup Instructions
 
-### Compile and Hot-Reload for Development
+### Prerequisites
 
-```sh
-npm run dev
-```
+- Node.js and npm should be installed on your machine.
 
-### Compile and Minify for Production
+### Build & Run
 
-```sh
-npm run build
-```
+1. Clone the repository:
+
+   ```bash
+   git clone <repository-url>
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   git clone
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Run the development server:
+
+    ```bash
+    npm run dev
+    ```
+
+
+### Version Control
+
+Git is used for version control. The repository is publicly accessible on [Github](https://github.com/ylakeah/business-list)
+.

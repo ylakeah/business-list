@@ -193,8 +193,9 @@ defineProps({
   top: 0;
 }
 .card {
-  margin-right: 25px;
-  margin-top: 25px;
+  /* margin-right: 25px;
+  margin-top: 25px; */
+  margin: 20px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
   background-color: #fff;
   width: 250px;

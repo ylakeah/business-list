@@ -12,6 +12,7 @@ defineProps({
   },
 });
 
+const bizhareAPI = import.meta.env.VITE_BIZHARE_API;
 const businessList = ref(null);
 const loading = ref(true);
 const error = ref(null);
@@ -26,7 +27,7 @@ const paramsBody = reactive({
 
 function fetchData() {
   loading.value = true;
-  return fetch("http://sandbox.bizharedev.id/business/parent/all", {
+  return fetch(`${bizhareAPI}/business/parent/all`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -65,7 +66,7 @@ function fetchData() {
 
 function fetchCategory() {
   loading.value = true;
-  return fetch("http://sandbox.bizharedev.id/media/param/business/category", {
+  return fetch(`${bizhareAPI}/media/param/business/category`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -109,29 +110,6 @@ onMounted(() => {
 
 <template>
   <div class="greetings">
-    <!-- <div>
-      <FilterCategory
-        :categoryList="categoryList"
-        @filter-category="
-          (list) => {
-            paramsBody.listCategory = list;
-            paramsBody.page = 1;
-            fetchData();
-          }
-        "
-      />
-
-      <SearchBar
-        @search-by-name="
-          (name) => {
-            paramsBody.businessName = name;
-            fetchData();
-          }
-        "
-      /> 
-
-    </div> -->
-
     <div>
       <SearchBar
         @search-by-name="
@@ -142,7 +120,6 @@ onMounted(() => {
         "
       />
     </div>
-
 
     <div>
       <FilterCategory
@@ -157,14 +134,17 @@ onMounted(() => {
       />
     </div>
 
-    <div class="flex-container">
+    <div class="flex-container" v-if="!loading">
       <BusinessCard
         :currentPage="paramsBody.page"
-        :index="index+1"
+        :index="index + 1"
         v-for="(item, index) in businessList?.content"
         :key="item?.id"
         :business="item"
       />
+    </div>
+    <div v-else>
+      Loading..
     </div>
 
     <div>
@@ -231,7 +211,7 @@ h3 {
   text-align: center;
 }
 
-.greetings{
+.greetings {
   /* max-width: 1024px; */
 }
 

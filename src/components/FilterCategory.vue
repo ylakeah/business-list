@@ -21,33 +21,35 @@ function toggle(params) {
     Filter <span v-if="showFilter">&#9650;</span><span v-else>&#9660;</span>
   </div>
 
-  <div class="filter-options centerized" v-if="showFilter">
-    <label v-for="(option, index) in categoryList" :key="index">
-      <input
-        type="checkbox"
-        v-model="selectedOptions"
-        :value="option.paramCode"
-      />
-      {{ option.paramName }}
-    </label>
+  <transition name="slide-fade">
+    <div class="filter-options re-center list" v-if="showFilter">
+      <label v-for="(option, index) in categoryList" :key="index">
+        <input
+          type="checkbox"
+          v-model="selectedOptions"
+          :value="option.paramCode"
+        />
+        {{ option.paramName }}
+      </label>
 
-    <div class="btm-section">
-      <button
-        class="btm-btn"
-        @click.prevent="$emit('filterCategory', selectedOptions), toggle()"
-      >
-        Apply
-      </button>
-      <button
-        class="btm-btn"
-        @click.prevent="
-          $emit('filterCategory', []), (selectedOptions = []), toggle()
-        "
-      >
-        Clear
-      </button>
+      <div class="btm-section">
+        <button
+          class="btm-btn"
+          @click.prevent="$emit('filterCategory', selectedOptions), toggle()"
+        >
+          Apply
+        </button>
+        <button
+          class="btm-btn"
+          @click.prevent="
+            $emit('filterCategory', []), (selectedOptions = []), toggle()
+          "
+        >
+          Clear
+        </button>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <style scoped>
@@ -56,6 +58,13 @@ function toggle(params) {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.re-center {
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
 .filter-container {
   position: relative;
   cursor: pointer;
@@ -63,7 +72,6 @@ function toggle(params) {
   color: #fff;
   border-radius: 5px;
   display: inline-block;
-  transition: 0.3s;
   border: silver 0.5px solid;
 }
 
@@ -78,7 +86,6 @@ function toggle(params) {
   color: #fff;
   border-radius: 5px;
   justify-content: center;
-  transition: 0.3s;
   border: silver 0.5px solid;
 }
 
@@ -102,12 +109,24 @@ function toggle(params) {
   border: silver 0.7px solid;
   margin-top: 10px;
   overflow: hidden;
-  transition: max-height 0.3s ease-out;
-  /* animation: fadeIn 0.6s ease-in both; */
 }
 
 .filter-options label {
   display: block;
   margin: 5px 0;
+}
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
 }
 </style>

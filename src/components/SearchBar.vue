@@ -20,7 +20,16 @@ watchEffect(() => {
         v-model="searchBusinessName"
         @keyup.enter="$emit('SearchByName', searchBusinessName)"
       />
-      <i class="fa fa-search" @click.prevent="$emit('SearchByName', searchBusinessName)">
+      <i
+        class="fa fa-search"
+        @click.prevent="
+          () => {
+            if (searchBusinessName !== null) {
+              $emit('SearchByName', searchBusinessName);
+            }
+          }
+        "
+      >
         <svg
           width="24"
           height="24"
@@ -42,7 +51,6 @@ watchEffect(() => {
         >Clear</a
       >
     </form>
-
   </div>
 </template>
 
@@ -51,7 +59,6 @@ watchEffect(() => {
   margin-top: 50px;
   margin-bottom: 50px;
 }
-
 
 form {
   position: relative;
@@ -104,7 +111,6 @@ form:valid {
   cursor: pointer;
 }
 
-
 form:hover input,
 form:valid input {
   display: block;
@@ -119,7 +125,6 @@ form:hover .fa svg path,
 form:valid .fa svg path {
   fill: white;
 }
-
 
 a {
   display: none;

@@ -20,7 +20,7 @@ watchEffect(() => {
         v-model="searchBusinessName"
         @keyup.enter="$emit('SearchByName', searchBusinessName)"
       />
-      <i class="fa fa-search">
+      <i class="fa fa-search" @click.prevent="$emit('SearchByName', searchBusinessName)">
         <svg
           width="24"
           height="24"
@@ -110,23 +110,14 @@ form:valid input {
   display: block;
 }
 
-.filca{
-    display: none;
-    height: 300px;
-    background-color: white;
-}
-
 form:hover .fa,
 form:valid .fa {
   background: #07051a;
   color: white;
 }
-form:hover .fa svg path {
+form:hover .fa svg path,
+form:valid .fa svg path {
   fill: white;
-}
-
-form:hover + .filca {
-  display: block;
 }
 
 

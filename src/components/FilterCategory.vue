@@ -77,9 +77,10 @@ function toggle(params) {
 
 .btm-section {
   margin: 15px;
+  text-align: center;
 }
 .btm-btn {
-  margin-right: 15px;
+  margin-right: 25px;
   cursor: pointer;
   padding: 10px;
   background-color: black;
